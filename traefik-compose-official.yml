@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   traefik:
     image: traefik:3.3
@@ -11,9 +9,9 @@ services:
       - '443:443/udp'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik.yml:/traefik.yml:ro
-      - ./traefik/traefik_dynamic.yml:/traefik_dynamic.yml:ro
-      - ./traefik/acme.json:/acme.json
+      - /etc/docker/volumes/traefik/traefik.yml:/traefik.yml:ro
+      - /etc/docker/volumes/traefik/traefik_dynamic.yml:/traefik_dynamic.yml:ro
+      - /etc/docker/volumes/traefik/acme.json:/acme.json
     networks:
       - traefik
 

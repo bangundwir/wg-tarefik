@@ -30,6 +30,7 @@ show_help() {
     echo ""
     echo "Utility Commands:"
     echo "  update-all        Update both services"
+    echo "  fix-volumes       Fix volume mounting issues"
     echo "  cleanup-official  Clean up official installation"
     echo "  help              Show this help"
 }
@@ -114,6 +115,11 @@ update_all() {
     echo "Services updated!"
 }
 
+fix_volumes() {
+    echo "Fixing volume mounting issues..."
+    ./fix-volume-mounting.sh
+}
+
 cleanup_official() {
     echo "Cleaning up official installation..."
     cd $WGEASY_DIR && sudo docker compose down -v 2>/dev/null || true
@@ -152,6 +158,7 @@ case "$1" in
     wg-logs) check_official && wg_logs ;;
     wg-restart) check_official && wg_restart ;;
     update-all) check_official && update_all ;;
+    fix-volumes) fix_volumes ;;
     cleanup-official) cleanup_official ;;
     help|--help|-h) show_help ;;
     "") echo "No command specified. Use '$0 help' for usage information." ;;
