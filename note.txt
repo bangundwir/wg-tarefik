@@ -1,0 +1,12 @@
+Duck DNS
+account
+hendrabangundwir@gmail.com
+type
+free
+token
+dfe377ca-478f-4f48-9d9d-3abbc069f5c0
+token generated
+3 years ago
+created date
+2 Aug 2022, 03:49:39
+success: ip address for buq.duckdns.org

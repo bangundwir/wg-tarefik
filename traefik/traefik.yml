@@ -1,0 +1,45 @@
+log:
+  level: INFO
+
+entryPoints:
+  web:
+    address: ':80/tcp'
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ':443/tcp'
+    http:
+      middlewares:
+        - compress@file
+        - hsts@file
+      tls:
+        certResolver: letsencrypt
+    http3: {}
+
+api:
+  dashboard: true
+  insecure: false
+  debug: true
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: hendrabangundwir@gmail.com
+      storage: acme.json
+      httpChallenge:
+        entryPoint: web
+
+providers:
+  docker:
+    watch: true
+    network: traefik
+    exposedByDefault: false
+  file:
+    filename: traefik_dynamic.yml
+    watch: true
+
+serversTransport:
+  insecureSkipVerify: true
