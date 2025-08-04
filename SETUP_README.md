@@ -42,12 +42,14 @@ This setup configures WireGuard Easy with Traefik reverse proxy using your Duck 
 - **Email**: hendrabangundwir@gmail.com
 - **Token**: dfe377ca-478f-4f48-9d9d-3abbc069f5c0
 
-### WireGuard Easy Settings
-- **Host**: wg.buq.duckdns.org
-- **Password**: admin123
-- **Port**: 51820 (UDP)
-- **Web Interface**: 51821
-- **Default VPN Network**: 10.8.0.x
+### WireGuard Easy Settings (v15 Changes)
+- **Host**: Configured through Web UI Admin Panel
+- **Password**: Set through Web UI setup wizard
+- **Port**: 51820 (UDP) for VPN, 51821 (TCP) for Web Interface
+- **Web Interface**: https://wg.buq.duckdns.org
+- **Configuration**: Most settings now configured through Web UI instead of environment variables
+
+**Important Note for v15**: WG-Easy v15 is a complete rewrite. Most configuration that was previously done through environment variables is now done through the Web UI Admin Panel.
 
 ### Traefik Dashboard
 - **URL**: https://traefik.buq.duckdns.org

@@ -32,6 +32,7 @@ show_help() {
     echo "Utility Commands:"
     echo "  update-dns        Update Duck DNS IP"
     echo "  debug             Run debug script"
+    echo "  fix-v15           Fix WG-Easy v15 migration issues"
     echo "  cleanup           Clean up all containers and networks"
     echo "  help              Show this help message"
 }
@@ -160,6 +161,11 @@ run_debug() {
     ./debug.sh
 }
 
+fix_v15() {
+    echo "Running WG-Easy v15 migration fix..."
+    ./fix-wg-v15.sh
+}
+
 cleanup() {
     echo "Cleaning up all containers and networks..."
     docker-compose -f wg-easy-compose.yml down -v
@@ -189,6 +195,7 @@ case "$1" in
     wg-logs) wg_logs ;;
     update-dns) update_dns ;;
     debug) run_debug ;;
+    fix-v15) fix_v15 ;;
     cleanup) cleanup ;;
     help|--help|-h) show_help ;;
     "") echo "No command specified. Use '$0 help' for usage information." ;;

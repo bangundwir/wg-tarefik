@@ -1,4 +1,23 @@
-# WireGuard Easy Troubleshooting Guide
+# WireGuard Easy v15 Troubleshooting Guide
+
+## WG-Easy v15 Migration Issues
+
+### Error: "You are using an invalid Configuration for wg-easy"
+
+This error occurs when trying to use old v14 environment variables with v15.
+
+**Solution:**
+```bash
+# Run the v15 migration fix script
+chmod +x fix-wg-v15.sh
+./fix-wg-v15.sh
+```
+
+### Key Changes in v15:
+- Environment variables like `WG_HOST`, `PASSWORD`, `WG_DEFAULT_ADDRESS` are no longer used
+- Configuration is now done through the Web UI Admin Panel
+- First time setup requires completing a setup wizard
+- Most server settings are configured through the web interface
 
 ## Masalah Umum dan Solusi
 
