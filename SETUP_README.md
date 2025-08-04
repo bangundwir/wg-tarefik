@@ -26,7 +26,13 @@ This setup configures WireGuard Easy with Traefik reverse proxy using your Duck 
    ./install-wg-easy.sh
    ```
 
-**Or install both at once:**
+**Or install using official directory structure:**
+```bash
+chmod +x setup-official.sh manage-official.sh
+./setup-official.sh
+```
+
+**Or install both at once (current method):**
 ```bash
 ./manage-services.sh install-all
 ```
@@ -95,6 +101,7 @@ Ensure these ports are open:
 
 ## File Structure
 
+### Current Method (Flexible)
 ```
 ├── traefik-compose.yml         # Traefik Docker Compose
 ├── wg-easy-compose.yml         # WG-Easy Docker Compose
@@ -102,18 +109,33 @@ Ensure these ports are open:
 ├── install-traefik.sh          # Install Traefik first
 ├── install-wg-easy.sh          # Install WG-Easy after Traefik
 ├── manage-services.sh          # Complete service management
+```
+
+### Official Method (Following WG-Easy docs)
+```
+/etc/docker/containers/traefik/docker-compose.yml
+/etc/docker/containers/wg-easy/docker-compose.yml
+/etc/docker/volumes/traefik/traefik.yml
+/etc/docker/volumes/traefik/traefik_dynamic.yml
+/etc/docker/volumes/traefik/acme.json
+```
+
+### Support Files
+```
+├── setup-official.sh           # Official directory setup
+├── manage-official.sh          # Official directory management
 ├── setup.bat                   # Windows setup script
 ├── setup.sh                    # Linux/macOS setup script (legacy)
 ├── debug.sh                    # Troubleshooting script
-├── traefik/
-│   ├── traefik.yml            # Traefik main configuration
-│   ├── traefik_dynamic.yml    # Traefik dynamic configuration
-│   └── acme.json              # SSL certificates storage
-└── wg-easy/                   # WireGuard configuration (created automatically)
+├── fix-vpn-internet.sh         # Fix VPN internet issues
+├── fix-routing.sh              # Fix server routing
+├── client-config-help.sh       # Client configuration help
+└── traefik/                    # Traefik configuration files
 ```
 
 ## Service Management
 
+### Current Method (Flexible Structure)
 Use the unified management script:
 
 ```bash
@@ -137,8 +159,34 @@ Use the unified management script:
 # Utilities
 ./manage-services.sh update-dns         # Update Duck DNS IP
 ./manage-services.sh debug              # Run troubleshooting
+./manage-services.sh fix-vpn            # Fix VPN internet issues
+./manage-services.sh client-help        # Client configuration help
 ./manage-services.sh cleanup            # Clean up everything
 ./manage-services.sh help               # Show all commands
+```
+
+### Official Method (Following WG-Easy Documentation)
+Use the official management script:
+
+```bash
+# Setup using official directory structure
+./manage-official.sh setup-official
+
+# Service control
+./manage-official.sh start-all          # Start all services
+./manage-official.sh stop-all           # Stop all services
+./manage-official.sh restart-all        # Restart all services
+./manage-official.sh status-all         # Show service status
+
+# Individual service control
+./manage-official.sh traefik-start      # Start only Traefik
+./manage-official.sh wg-start           # Start only WG-Easy
+./manage-official.sh traefik-logs       # View Traefik logs
+./manage-official.sh wg-logs            # View WG-Easy logs
+
+# Utilities
+./manage-official.sh update-all         # Update both services
+./manage-official.sh cleanup-official   # Clean up official installation
 ```
 
 ## Auto Duck DNS Update

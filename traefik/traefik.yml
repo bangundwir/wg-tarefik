@@ -21,8 +21,6 @@ entryPoints:
 
 api:
   dashboard: true
-  insecure: false
-  debug: true
 
 certificatesResolvers:
   letsencrypt:
@@ -39,7 +37,6 @@ providers:
     exposedByDefault: false
   file:
     filename: traefik_dynamic.yml
-    watch: true
 
 serversTransport:
   insecureSkipVerify: true
